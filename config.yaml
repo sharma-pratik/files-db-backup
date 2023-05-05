@@ -1,0 +1,50 @@
+--- 
+PROJECTS:
+  - NAME : RTS
+    BACKUPS:
+      - FILE_BACKUP:
+          - INTERVALS:
+              - "1 1 1 1 1"
+            FILE_PATH:
+              - /var/log/apache2/access.log
+            UPLOAD_TO:
+              - STORAGE_NAME : ONEDRIVE
+                PATH: Backups/apache/errors
+            SSH:
+              USERNAME: ubuntu
+              IP_ADDRESS: 3.109.70.26
+            
+  - NAME : POS Production
+    BACKUPS:
+      - DB_BACKUP:
+          - INTERVALS:
+              - "1 1 1 1 1"
+            DB_INFO:
+              USERNAME : pos_prod
+              PASSWORD : mMYNysD22u5s
+              PORT : 5432
+              NAME : pos_prod
+              HOST : localhost
+              DOCKER : 
+                CONTAINER_NAME : lis-backend-database-1
+            UPLOAD_TO:
+              - STORAGE_NAME : ONEDRIVE
+                PATH: Backups/pos/prod/db_backup
+            SSH:
+              USERNAME: ubuntu
+              IP_ADDRESS: 3.109.70.26
+  - NAME : POS Local
+    BACKUPS:
+      - DB_BACKUP:
+          - INTERVALS:
+              - "1 1 1 1 1"
+            DB_INFO:
+              USERNAME : db_user
+              PASSWORD : 1234
+              PORT : 5432
+              NAME : pos_dev
+              HOST : localhost
+            UPLOAD_TO:
+              - STORAGE_NAME : ONEDRIVE
+                PATH: Backups/pos/local/db_backup
+
